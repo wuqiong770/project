@@ -1,12 +1,11 @@
 package com.example.demo.service;
 
-import com.example.demo.DemoApplication;
 import com.example.demo.mapper.PersonMapper;
-import com.example.demo.module.Person;
+import com.example.demo.model.Person;
+import com.github.pagehelper.PageHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,27 +21,18 @@ public class PersonService {
     @Autowired
     private PersonMapper personMapper;
 
-//    public Person createPerson(String name){
-//        Person person = new Person();
-//        person.setName(name);
-//        person.setAge(18);
-//        person.setGender("女");
-//        return person;
-//    }
     @Transactional
     public List<Person> getPerson(){
        return personMapper.selectAll();
     }
 
+//按照id 排序，获取第person.getPage()页的前person.getRows()行的。。。。。
     @Transactional
-    public String insertPerson(Person person){
-        personMapper.insert(person);
-        return "{message:ok}";
-    }
-
-    @Transactional
-    public Person findById(Long id){
-       return personMapper.selectOne(id);
+    public List<Person> getPerson(Person person) {
+        if (person.getPage() != null && person.getRows() != null) {
+            PageHelper.startPage(person.getPage(), person.getRows(), "id");
+        }
+        return personMapper.select(person);
     }
 
 }

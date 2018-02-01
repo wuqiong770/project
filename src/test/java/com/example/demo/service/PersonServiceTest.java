@@ -1,6 +1,6 @@
 package com.example.demo.service; 
 
-import com.example.demo.module.Person;
+import com.example.demo.model.Person;
 import org.junit.Test;
 import org.junit.Before; 
 import org.junit.After;
@@ -37,19 +37,15 @@ public class PersonServiceTest {
 * Method: getPerson() 
 * 
 */ 
-    @Test
-    public void testGetPerson() throws Exception {
-        List<Person> personList = personService.getPerson();
-        personList.forEach(person -> {
-            System.out.println(person.getName()+" "+person.getCreatedAt());
-        });
-    }
+//    @Test
+//    public void testGetPerson() throws Exception {
+//        List<Person> personList = personService.getPerson();
+//        personList.forEach(person -> {
+//            System.out.println(person.getName()+" "+person.getCreatedAt());
+//        });
+//    }
 
 
-    @Test
-    public void testInsertPerson(){
-        Person person = new Person("test","12",1);
-        personService.insertPerson(person);
-    }
+
     
     }

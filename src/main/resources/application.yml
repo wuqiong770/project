@@ -19,8 +19,5 @@ spring:
       testOnReturn: false
       poolPreparedStatements: true
       maxOpenPreparedStatements: 20
-mybatis:
-  mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.example.demo.module
-#  config-location: classpath:mybatis-config.xml
+
 

@@ -1,6 +1,7 @@
 package com.example.demo.api;
 
-import com.example.demo.module.Person;
+import com.example.demo.mapper.PersonMapper;
+import com.example.demo.model.Person;
 import com.example.demo.service.PersonService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,9 @@ public class PersonController {
     @Autowired
     private PersonService personService;
 
+    @Autowired
+    private PersonMapper personMapper;
+
     private static Logger logger = LoggerFactory.getLogger(PersonController.class);
 
     @RequestMapping(value = "/get", method = RequestMethod.GET)
@@ -36,43 +40,28 @@ public class PersonController {
 
     }
 
-    @RequestMapping(value = "/insert", method = RequestMethod.POST)
+    @RequestMapping(value = "/get2", method = RequestMethod.GET)
     @ResponseBody
-    public String insertPerson(@RequestBody Person person){
+    public List<Person> getPerson2(){
         try {
-            return personService.insertPerson(person);
+            Person person = new Person();
+            person.setPage(1);
+            person.setRows(3);
+            return personService.getPerson(person);
         }catch (Exception e){
             e.printStackTrace();
-            return "{\"message\":\"failed\"}";
+            return null;
         }
+
+    }
+    @RequestMapping(value = "/get/one", method = RequestMethod.GET)
+    @ResponseBody
+    public Person getPersonById(){
+
+        Person person = new Person();
+        person.setId(1L);
+        person.setName("qiong.wu");
+        return  personMapper.selectOne(person);
     }
 
-//
-//    @RequestMapping(value = "/home", method = RequestMethod.GET)
-//    public ModelAndView home() {
-//        logger.info("跳转到home界面");
-//        ModelAndView result = new ModelAndView("person/home");
-//        List<Person> personList = personService.getPerson();
-//        result.addObject("person",personList);
-//        return result;
-//    }
-
-//
-//    @RequestMapping(value = "add",method = RequestMethod.GET)
-//    public ModelAndView add(Long id){
-//        ModelAndView mv = new ModelAndView("person_add");
-//        Person person;
-//        if (id == null){
-//            person = new Person();
-//        }else {
-//            person = personService.findById(id);
-//        }
-//        mv.addObject("model",person);
-//        return mv;
-//    }
-
-//    @ExceptionHandler(NotFindException.class)
-//    public String handleException(){
-//        return "error";
-//    }
 }

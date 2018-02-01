@@ -1,22 +1,28 @@
-package com.example.demo.module;
+package com.example.demo.model;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
  * Created by Joana on 17/11/16.
  */
-public class Person {
+@Table(name = "t_person")
+public class Person  extends BaseEtity{
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String age;
     private Integer gender;
     private Date createdAt;
-    private Date updateAt;
+    private Date updatedAt;
 
     public Person(String name, String age, Integer gender) {
         this.name = name;
@@ -43,12 +49,12 @@ public class Person {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdateAt() {
-        return updateAt;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdateAt(Date updateAt) {
-        this.updateAt = updateAt;
+    public void setUpdateAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public String getName() {
