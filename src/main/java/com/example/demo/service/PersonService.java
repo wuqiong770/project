@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 import com.example.demo.mapper.PersonMapper;
 import com.example.demo.model.Person;
-import com.github.pagehelper.PageHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +25,5 @@ public class PersonService {
        return personMapper.selectAll();
     }
 
-//按照id 排序，获取第person.getPage()页的前person.getRows()行的。。。。。
-    @Transactional
-    public List<Person> getPerson(Person person) {
-        if (person.getPage() != null && person.getRows() != null) {
-            PageHelper.startPage(person.getPage(), person.getRows(), "id");
-        }
-        return personMapper.select(person);
-    }
 
 }

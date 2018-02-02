@@ -3,20 +3,14 @@ package com.example.demo.model;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+
 import java.util.Date;
 
 /**
  * Created by Joana on 17/11/16.
  */
-@Table(name = "t_person")
-public class Person  extends BaseEtity{
+public class Person  {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String age;

@@ -40,28 +40,5 @@ public class PersonController {
 
     }
 
-    @RequestMapping(value = "/get2", method = RequestMethod.GET)
-    @ResponseBody
-    public List<Person> getPerson2(){
-        try {
-            Person person = new Person();
-            person.setPage(1);
-            person.setRows(3);
-            return personService.getPerson(person);
-        }catch (Exception e){
-            e.printStackTrace();
-            return null;
-        }
-
-    }
-    @RequestMapping(value = "/get/one", method = RequestMethod.GET)
-    @ResponseBody
-    public Person getPersonById(){
-
-        Person person = new Person();
-        person.setId(1L);
-        person.setName("qiong.wu");
-        return  personMapper.selectOne(person);
-    }
 
 }
